@@ -43,7 +43,11 @@ public class PersonService {
         existingPerson.setPhoneNumber(updatePerson.getPhoneNumber());
 
         return personRepository.save(existingPerson); //Saves the update
+    }
 
+    public void deleteById(Long id) {
+        Person person = findById(id); //Controls so user does exist
+        personRepository.deleteById(id);
     }
 
 }
