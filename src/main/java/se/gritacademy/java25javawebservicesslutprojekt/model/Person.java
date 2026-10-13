@@ -8,29 +8,32 @@ import java.util.Set;
 @Entity
 public class Person {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id //Primary key
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //Creates ID for user, creates user
     private Long id = 0L;
-    @Column(name = "name")
+    @Column(name = "name") //Creates column in database with row name
     private String name;
-    @Column(unique = true, nullable = false)
+    @Column(unique = true, nullable = false) //User must write a phone number, two users cannot use the same number
     private String phoneNumber;
 
-    @ManyToMany
-    @JoinTable(name = "person_tools",
-            joinColumns = @JoinColumn(name = "person_id"),
-            inverseJoinColumns = @JoinColumn(name = "tools_id"))
+    @ManyToMany //User can have many tools, users can share tools
+    @JoinTable(name = "person_tools", //adds table to tools table
+            joinColumns = @JoinColumn(name = "person_id"), //Person tabel
+            inverseJoinColumns = @JoinColumn(name = "tools_id")) //Tools table
 
-    private Set<Tools> tools = new HashSet<>();
+    //New hashset = to create a empty "inventory" for user
+    private Set<Tools> tools = new HashSet<>(); //List for users that can loan different tools at the same time
 
-    public Person() {}
+    public Person() {} //Constructor
 
+    //Creates person with attributes
     public Person(Long id, String name, String phoneNumber) {
         this.id = id;
         this.name = name;
         this.phoneNumber = phoneNumber;
     }
 
+    //Getters and setters to get information and set information about user
     public Long getId() {
         return id;
     }
@@ -61,6 +64,15 @@ public class Person {
 
     public void setTools(Set<Tools> tools) {
         this.tools = tools;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", phone='" + phoneNumber + '\'' +
+                '}';
     }
 
 }
