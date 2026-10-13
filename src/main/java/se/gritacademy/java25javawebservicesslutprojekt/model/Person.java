@@ -17,7 +17,7 @@ public class Person {
     private String phoneNumber;
 
     @ManyToMany //User can have many tools, users can share tools
-    @JoinTable(name = "person_tools", //adds table to tools table
+    @JoinTable(name = "person_tools", //adds table to tools table, Person chooses what data gets saved in this table
             joinColumns = @JoinColumn(name = "person_id"), //Person tabel
             inverseJoinColumns = @JoinColumn(name = "tools_id")) //Tools table
 
@@ -67,7 +67,7 @@ public class Person {
     }
 
     @Override
-    public String toString() {
+    public String toString() { //Shows object in text
         return "Person{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
