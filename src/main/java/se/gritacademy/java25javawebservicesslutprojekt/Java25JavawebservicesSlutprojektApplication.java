@@ -8,6 +8,7 @@ public class Java25JavawebservicesSlutprojektApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(Java25JavawebservicesSlutprojektApplication.class, args);
+
     }
 
 }
