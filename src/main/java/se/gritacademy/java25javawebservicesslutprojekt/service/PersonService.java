@@ -46,7 +46,9 @@ public class PersonService {
     }
 
     public void deleteById(Long id) {
-        Person person = findById(id); //Controls so user does exist
+        personRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND, "Person with id " + id + " was not found"));
         personRepository.deleteById(id);
     }
 
