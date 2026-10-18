@@ -9,7 +9,9 @@ import se.gritacademy.java25javawebservicesslutprojekt.model.Tools;
 import se.gritacademy.java25javawebservicesslutprojekt.repository.PersonRepository;
 import se.gritacademy.java25javawebservicesslutprojekt.repository.ToolRepository;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 @Transactional
@@ -53,13 +55,13 @@ public class PersonService {
         return personRepository.save(person); //saves
     }
 
-    public Person update(Long id, Person updatePerson) { //Takes ID on current user to update
-        Person existingPerson = findById(id); //Finds user
+    public Person update(Long id, Person updatePerson) {
+        Person existingPerson = findById(id);
 
-        existingPerson.setName(updatePerson.getName());
+        existingPerson.setName(updatePerson.getName()); //Updates user from POST
         existingPerson.setPhoneNumber(updatePerson.getPhoneNumber());
 
-        return personRepository.save(existingPerson); //Saves the update
+        return personRepository.save(existingPerson);
     }
 
     public void deleteById(Long id) {
