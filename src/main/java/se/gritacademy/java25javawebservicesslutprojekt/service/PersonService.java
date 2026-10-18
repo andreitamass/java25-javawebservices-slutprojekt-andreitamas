@@ -65,10 +65,15 @@ public class PersonService {
     }
 
     public void deleteById(Long id) {
-        personRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(
-                        HttpStatus.NOT_FOUND, "Person with id " + id + " was not found"));
-        personRepository.deleteById(id);
+        Person person = findById(id);
+
+        if (!person.getTools().isEmpty()) {
+            throw new ResponseStatusException(
+                    HttpStatus.CONFLICT, //Throws 409 if tool is linked with user
+                    "Cannot delete user due to user having a tool currently borrowed"
+            );
+        }
+        personRepository.delete(person);
     }
 
 }

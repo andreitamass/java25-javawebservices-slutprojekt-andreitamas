@@ -1,6 +1,7 @@
 package se.gritacademy.java25javawebservicesslutprojekt.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -11,8 +12,10 @@ public class Person {
     @Id //Primary key
     @GeneratedValue(strategy = GenerationType.IDENTITY) //Creates ID for user, creates user
     private Long id = 0L;
-    @Column(name = "name") //Creates column in database with row name
+    @NotBlank(message = "Must fill name")
+    @Column(name = "name", nullable = false) //Creates column in database with row name
     private String name;
+    @NotBlank(message = "Must fill phonenumber")
     @Column(unique = true, nullable = false) //User must write a phone number, two users cannot use the same number
     private String phoneNumber;
 

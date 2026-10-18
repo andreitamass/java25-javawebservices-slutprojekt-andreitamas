@@ -1,5 +1,6 @@
 package se.gritacademy.java25javawebservicesslutprojekt.controller;
 
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 import se.gritacademy.java25javawebservicesslutprojekt.model.Person;
 import se.gritacademy.java25javawebservicesslutprojekt.repository.PersonRepository;
@@ -28,13 +29,14 @@ public class PersonController {
     }
 
     @PostMapping //POST method to create user
-    public Person create(@RequestBody Person person) {
+    public Person create(@Valid @RequestBody Person person) { //NotBlank, describes rules, Valid controlls them
         return personService.save(person);
     }
 
     @PutMapping("/{id}") //PUT method to update user
     public Person update(
             @PathVariable Long id,
+            @Valid
             @RequestBody Person person) {
         return personService.update(id, person);
     }
