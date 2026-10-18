@@ -6,7 +6,7 @@ import jakarta.validation.constraints.NotBlank;
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity
+@Entity //Class that JPA handles
 public class Person {
 
     @Id //Primary key

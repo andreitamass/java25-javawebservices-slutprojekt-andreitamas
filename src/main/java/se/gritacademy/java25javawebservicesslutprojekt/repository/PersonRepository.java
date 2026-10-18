@@ -7,4 +7,4 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
 
 }
 
-//CRUD interface, instead of DAO
+//CRUD interface, instead of DAO, saves() instead of using SQL
