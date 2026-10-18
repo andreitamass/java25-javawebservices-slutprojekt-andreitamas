@@ -1,5 +1,6 @@
 package se.gritacademy.java25javawebservicesslutprojekt.controller;
 
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 import se.gritacademy.java25javawebservicesslutprojekt.model.Tools;
 import se.gritacademy.java25javawebservicesslutprojekt.service.ToolService;
@@ -27,12 +28,12 @@ public class ToolController {
     }
 
     @PostMapping
-    public Tools saveTool(@RequestBody Tools tools) {
+    public Tools saveTool(@Valid @RequestBody Tools tools) {
         return toolService.save(tools);
     }
 
     @PutMapping("/{id}")
-    public Tools updateTool(@PathVariable Long id, @RequestBody Tools tools) {
+    public Tools updateTool(@PathVariable Long id, @Valid @RequestBody Tools tools) {
         return toolService.update(id, tools);
     }
 

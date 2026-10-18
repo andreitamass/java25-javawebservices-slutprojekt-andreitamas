@@ -2,6 +2,7 @@
 package se.gritacademy.java25javawebservicesslutprojekt.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 public class Tools {
@@ -10,9 +11,11 @@ public class Tools {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id = 0L;
 
+    @NotBlank(message = "Must fill tool name")
     @Column(nullable = false)
     private String toolsName;
 
+    @NotBlank(message = "Must fill description")
     @Column(nullable = false)
     private String toolsDescription;
 
